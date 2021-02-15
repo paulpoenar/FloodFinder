@@ -23,8 +23,10 @@ export class LogoutComponent implements OnInit {
 
   async ngOnInit() {
     const action = this.activatedRoute.snapshot.url[1];
+    console.log(action);
     switch (action.path) {
       case LogoutActions.Logout:
+
         if (!!window.history.state.local) {
           await this.logout(this.getReturnUrl());
         } else {
@@ -38,6 +40,7 @@ export class LogoutComponent implements OnInit {
         break;
       case LogoutActions.LoggedOut:
         this.message.next('You successfully logged out!');
+        this.navigateToLoginUrl();
         break;
       default:
         throw new Error(`Invalid action '${action}'`);
@@ -71,6 +74,7 @@ export class LogoutComponent implements OnInit {
   private async processLogoutCallback(): Promise<void> {
     const url = window.location.href;
     const result = await this.authorizeService.completeSignOut(url);
+
     switch (result.status) {
       case AuthenticationResultStatus.Redirect:
         // There should not be any redirects as the only time completeAuthentication finishes
@@ -90,6 +94,14 @@ export class LogoutComponent implements OnInit {
   private async navigateToReturnUrl(returnUrl: string) {
     await this.router.navigateByUrl(returnUrl, {
       replaceUrl: true
+    });
+  }
+
+  private async navigateToLoginUrl() {
+    await this.router.navigateByUrl('/', {
+      state: {
+        local: false
+      }
     });
   }
 

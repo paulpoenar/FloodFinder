@@ -18,11 +18,11 @@ $border-color: hsl(0, 0, 98);
 
 /* The actual content */
 .content {
-  padding: 16px 16px 10px 16px;
+  padding: 16px;
   background-color: white;
   position: relative;
   border-radius: 6px;
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
 }
 
 .severity-type--label {
@@ -62,7 +62,7 @@ $border-color: hsl(0, 0, 98);
 }
 
 .message-description{
-  overflow: hidden;
+  overflow: auto;
   color: hsl(0, 0%, 75%);
   height: 6.5rem;
   font-size: 15px;
