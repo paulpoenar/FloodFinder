@@ -1,0 +1,28 @@
+<div class="content level-card-wrapper">
+
+  <div class="d-flex align-items-center" >
+    <div class="severity-type--label " [ngClass]="{'type-1': item.severityLevel === 1, 'type-2': item.severityLevel === 2,
+    'type-3': item.severityLevel === 3,'type-4': item.severityLevel === 4}">
+      <span class="ml-1">{{item.severity}}</span>
+    </div>
+
+    <div class="d-flex ml-auto">
+      <span class="d-flex date-achieved">{{item.timeRaised | dateFormat}}</span>
+
+    </div>
+  </div>
+
+
+  <div class="d-flex pl-1 message-title">
+    {{item.description}}
+  </div>
+
+  <div class="d-flex pl-1 message-description">
+    {{item.message}}
+  </div>
+
+
+
+
+
+</div>

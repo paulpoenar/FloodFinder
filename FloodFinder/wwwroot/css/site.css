@@ -1,0 +1,62 @@
+﻿html {
+    font-size: 14px;
+}
+
+
+html > body {
+    background-color: hsl(215, 100%, 98%);
+    color: hsl(0, 0%, 45%);
+}
+
+body footer {
+    overflow: hidden;
+}
+
+.identity-form--card {
+    flex: 0 0 35%;
+    max-width: 35%;
+    margin-top: 5%; 
+    box-shadow: 0 12px 18px -2px hsl(200, 50%, 92%);
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 1rem 1.5rem 0.75rem;
+}
+
+.identity-form--main-btn {
+    width: 100%;
+    margin: 0 1rem 1rem;
+    padding: 0.5rem 0;
+}
+
+.logo-wrapper {
+    display: flex;
+    width: 200px;
+    margin: auto;
+}
+
+.logo-wrapper img { 
+    width: 100%;
+}
+
+.identity-form--card .form-group label {
+    margin-bottom: 0.3rem;
+    color: hsl(0, 0%, 65%);
+}
+
+
+.identity-form--card .form-group .form-control {
+    border-color: hsl(0, 0%, 90%);
+    height: calc(1.5em + .95rem + 2px);
+    padding: .475rem .75rem;
+}
+
+.identity-form--card .btn-primary {
+    font-weight: 600;
+    color: #fff;
+    background-color: #3f73a6;
+    border-color: #3f73a6;
+}
+
+.identity-form--card .form-group .checkbox-label {
+    color: hsl(0, 0%, 50%);
+}

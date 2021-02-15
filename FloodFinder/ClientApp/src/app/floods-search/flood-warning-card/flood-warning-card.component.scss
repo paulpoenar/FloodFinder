@@ -1,0 +1,68 @@
+$border-color: hsl(0, 0, 98);
+
+.level-card-wrapper {
+  max-width: 32rem;
+  border: 1px solid $border-color;
+  padding: 1rem 1rem 0;
+  border-radius: 6px;
+  color: hsl(0, 0, 50);
+  box-shadow: 0 4px 10px 3px hsl(0, 0%, 92%);
+
+  .date-achieved {
+    background-color: hsl(200, 10, 92);
+    padding: 3px 5px 2px;
+    font-size: 0.775rem;
+    border-radius: 10px;
+  }
+}
+
+
+/* The actual content */
+.content {
+  padding: 10px 12px 12px 12px;
+  background-color: white;
+  position: relative;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+.severity-type--label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 1px 8px 2px 6px;
+  margin-bottom: 6px;
+  border-radius: 9px;
+  font-size: 13.5px;
+
+  &.type-1 {
+    background-color: hsl(0, 75%, 95%);
+    color: hsl(0, 75%, 50%);
+  }
+
+  &.type-2 {
+    background-color: hsl(29, 75%,95%);
+    color: hsl(29, 75%, 50%);
+  }
+
+  &.type-3 {
+    background-color: hsl(56, 75%, 95%);
+    color: hsl(41, 86%, 45%);
+  }
+
+  &.type-4 {
+    background-color: hsl(140, 75%, 97%);
+    color: hsl(140, 75%, 40%);
+  }
+}
+
+.message-title{
+  color: hsl(0, 0%, 40%);
+  font-weight: 500;
+}
+
+.message-description{
+  overflow: hidden;
+  color: hsl(0, 0%, 70%);
+  height: 4.4rem;
+}

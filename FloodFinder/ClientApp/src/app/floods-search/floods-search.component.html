@@ -1,0 +1,17 @@
+
+
+
+<div class="d-flex flex-column align-items-center">
+  <mat-form-field class="search-box" appearance="outline">
+    <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto" placeholder="Search for area here ...">
+    <mat-autocomplete  #auto="matAutocomplete" [displayWith]="displayFn" autoActiveFirstOption (optionSelected)="optionSelectedHandler($event)">
+      <mat-option *ngFor="let county of filteredOptions | async" [value]="county" >
+        {{county.name}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <app-search-result [result]="searchResult"></app-search-result>
+</div>
+
+

@@ -1,0 +1,10 @@
+<ul class="navbar-nav" *ngIf="isAuthenticated | async">
+    <li class="nav-item">
+        <a class="nav-link text-dark" [routerLink]='["/authentication/logout"]' [state]='{ local: true }' title="Logout"  matTooltip="Log Out">
+          <span class="material-icons">power_settings_new</span>
+        </a>
+    </li>
+</ul>
+<ul class="navbar-nav" *ngIf="!(isAuthenticated | async)">
+   Not Authenticated
+</ul>

@@ -1,0 +1,54 @@
+@page
+@model FloodFinder.Areas.Identity.Pages.Account.LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+}
+
+
+<div class="row justify-content-center">
+    <div class="identity-form--card">
+        <section>
+            <form id="account" method="post">
+                
+                <div class="logo-wrapper mt-3">
+                    <img src='~/img/logo.png'>
+                </div>
+
+                <h5 class="text-center pt-4 pb-1">SIGN IN</h5>
+
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group mt-3">
+                    <label asp-for="Input.Email"></label>
+                    <input asp-for="Input.Email" class="form-control"/>
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="form-group mt-1">
+                    <label asp-for="Input.Password"></label>
+                    <input asp-for="Input.Password" class="form-control"/>
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div class="form-group mt-1">
+                    <div class="checkbox">
+                        <label asp-for="Input.RememberMe" class="checkbox-label">
+                            <input asp-for="Input.RememberMe"/>
+                            @Html.DisplayNameFor(m => m.Input.RememberMe)
+                        </label>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-column align-items-center mt-5">
+                    <button type="submit" class="btn btn-primary identity-form--main-btn">Log in</button>
+                    <p>
+                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register</a>
+                    </p>
+                </div>
+            </form>
+        </section>
+    </div>
+   
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,50 @@
+.fadedInfo {
+  opacity: 0.7;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: auto;
+  animation: fadedinfo 0.3s ease-in;
+  height: 100%;
+  font-size: 12px;
+  padding-bottom: 3.5rem;
+
+  span.title{
+    margin-top: 2rem;
+    text-align: center;
+    color: hsl(0, 0, 30);
+    font-size: 1.8rem
+  }
+
+  span.text{
+    color: hsl(0, 0, 60);
+    font-size: 1.2rem;
+  }
+}
+
+.fadedInfo svg {
+  width: 150px;
+}
+
+@keyframes fadedinfo {
+  0% {
+    opacity: 0;
+  }
+
+  79% {
+    opacity: 0;
+    transform: scale(1)
+  }
+
+  80% {
+    opacity: 0.7;
+    transform: scale(0.9)
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1)
+  }
+}

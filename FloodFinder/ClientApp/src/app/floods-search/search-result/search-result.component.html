@@ -1,0 +1,12 @@
+<div *ngIf="result?.items">
+  <app-flood-warning-card *ngFor="let item of result.items" [item]="item" class="container right">
+
+  </app-flood-warning-card>
+</div>
+
+
+<div *ngIf="result && result.items.length === 0">
+  <app-no-data title="Excellent" text="No warnings found!"></app-no-data>
+</div>
+
+
