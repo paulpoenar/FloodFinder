@@ -10,6 +10,7 @@ Prerequisites: .NET Core 5 (https://dotnet.microsoft.com/download/dotnet/5.0) an
 To install this example application, run the following commands:
 
 https://github.com/paulpoenar/FloodFinder.git
+
 This will download a copy of the project.
 
 Start the app
