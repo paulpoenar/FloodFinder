@@ -2,11 +2,10 @@ $border-color: hsl(0, 0, 98);
 
 .level-card-wrapper {
   max-width: 32rem;
-  border: 1px solid $border-color;
   padding: 1rem 1rem 0;
   border-radius: 6px;
   color: hsl(0, 0, 50);
-  box-shadow: 0 4px 10px 3px hsl(0, 0%, 92%);
+  box-shadow: 0 15px 32px 0px hsl(0, 0%, 92%);
 
   .date-achieved {
     background-color: hsl(200, 10, 92);
@@ -19,7 +18,7 @@ $border-color: hsl(0, 0, 98);
 
 /* The actual content */
 .content {
-  padding: 10px 12px 12px 12px;
+  padding: 16px 16px 10px 16px;
   background-color: white;
   position: relative;
   border-radius: 6px;
@@ -33,7 +32,7 @@ $border-color: hsl(0, 0, 98);
   padding: 1px 8px 2px 6px;
   margin-bottom: 6px;
   border-radius: 9px;
-  font-size: 13.5px;
+  font-size: 13px;
 
   &.type-1 {
     background-color: hsl(0, 75%, 95%);
@@ -41,28 +40,30 @@ $border-color: hsl(0, 0, 98);
   }
 
   &.type-2 {
-    background-color: hsl(29, 75%,95%);
-    color: hsl(29, 75%, 50%);
+    background-color: hsl(5, 76%, 95%);
+    color: hsl(5, 75%, 50%);
   }
 
   &.type-3 {
-    background-color: hsl(56, 75%, 95%);
-    color: hsl(41, 86%, 45%);
+    background-color: hsl(37, 76%, 95%);
+    color: hsl(31, 100%, 58%);
   }
 
   &.type-4 {
-    background-color: hsl(140, 75%, 97%);
-    color: hsl(140, 75%, 40%);
+    background-color: hsl(136, 50%, 94%);
+    color: hsl(140, 70%, 44%);
   }
 }
 
 .message-title{
   color: hsl(0, 0%, 40%);
   font-weight: 500;
+  margin-top: 4px;
 }
 
 .message-description{
   overflow: hidden;
-  color: hsl(0, 0%, 70%);
-  height: 4.4rem;
+  color: hsl(0, 0%, 75%);
+  height: 6.5rem;
+  font-size: 15px;
 }
