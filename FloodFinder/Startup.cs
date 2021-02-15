@@ -31,8 +31,6 @@ namespace FloodFinder
       services.SetupApplicationLayer();
       services.SetupInfrastructureLayer(Configuration);
       services.AddControllersWithViews()
-      //(options => options.Filters
-            //.Add<ApiExceptionFilterAttribute>())
         .AddFluentValidation();
 
       services.AddRazorPages().AddRazorRuntimeCompilation();
@@ -95,8 +93,7 @@ namespace FloodFinder
 
         if (env.IsDevelopment())
         {
-          //spa.UseAngularCliServer(npmScript: "start");
-          spa.UseProxyToSpaDevelopmentServer(Configuration["SpaBaseUrl"] ?? "http://localhost:4200");
+          spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
         }
       });
     }
