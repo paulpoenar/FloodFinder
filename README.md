@@ -38,9 +38,9 @@ Asp.NET Core specific stuff and the ClientApp (would have made this a separate p
 
 ## Technologies
 
-* ASP.NET Core 5
+* [ASP.NET Core 5](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-5.0)
 * [Entity Framework Core 5](https://docs.microsoft.com/en-us/ef/core/)
-* [Angular 10](https://angular.io/)
+* [Angular](https://angular.io/)
 * [MediatR](https://github.com/jbogard/MediatR)
 * [AutoMapper](https://automapper.org/)
 * [FluentValidation](https://fluentvalidation.net/)
