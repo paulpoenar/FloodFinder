@@ -11,11 +11,11 @@ To install this example application, run the following commands:
 
 https://github.com/paulpoenar/FloodFinder.git
 This will download a copy of the project.
-cd FloodFinder
 
 Start the app
-To install all of the dependencies and start the app, run:
-dotnet run (this will do an npm install so might take a bit)
+1. Navigate to `FloodFinder/FloodFinder/ClientApp` and run `npm install`
+2. Navigate to `FloodFinder/FloodFinder/ClientApp` and run `npm start` to launch the Angular app
+3. Navigate to `FloodFinder/FloodFinder` and run `dotnet run` to launch Identity Server and the API
 
 ## Architecture
 
