@@ -20,7 +20,7 @@ Start the app
 
 ## Architecture
 
-### Domain
+### Core
 
 Contains all entities and logic specific to the domain layer.
 
