@@ -1,5 +1,3 @@
-FloodFinder
-https://floodfinder.azurewebsites.net
 <br/>
 
 ## Overview
@@ -34,7 +32,7 @@ Contains classes based on interfaces defined within the application layer.
 
 ### Main
 
-Asp.NET Core specific stuff and the ClientApp (would have made this a separate project, but then would have ended with at least 3 repositories (Auth, Angular app, API), and thought it would be a bit of an overkill)
+Presentation Layer, Main API, AuthServer and the ClientApp (3 separate projects in a real world scenario)
 
 ## Technologies
 
