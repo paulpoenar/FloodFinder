@@ -1,5 +1,3 @@
-<br/>
-
 ## Overview
 Built using an ASP.NET Core backend and an Angular frontend.
 
