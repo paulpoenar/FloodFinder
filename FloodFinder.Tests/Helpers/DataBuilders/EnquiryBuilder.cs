@@ -1,6 +1,6 @@
 ﻿using FloodFinder.Core.Entities;
 
-namespace FloodFinder.Tests.DataBuilders
+namespace FloodFinder.Tests.Helpers.DataBuilders
 {
   public class EnquiryBuilder
   {

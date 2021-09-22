@@ -1,8 +1,7 @@
-﻿using System;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Xunit;
 
-namespace FloodFinder.Tests.UnitTests.FloodArea
+namespace FloodFinder.Tests.UnitTests.Domain.FloodArea
 {
   public class AddEditTests
   {

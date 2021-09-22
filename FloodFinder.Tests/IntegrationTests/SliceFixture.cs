@@ -21,7 +21,7 @@ namespace FloodFinder.Tests.IntegrationTests
     private static readonly Checkpoint _checkpoint;
     private static readonly IConfigurationRoot _configuration;
     private static readonly IServiceScopeFactory _scopeFactory;
-    private static int _currentUserId;
+    private static int _currentUserId = 1;
 
     static SliceFixture()
     {
@@ -120,7 +120,7 @@ namespace FloodFinder.Tests.IntegrationTests
 
       // Register testing version
       services.AddTransient(provider =>
-        Mock.Of<ICurrentUserService>(s => s.GetCurrentUserId() == _currentUserId));
+        Mock.Of<ICurrentUserService>(s => s.GetId() == _currentUserId));
 
     }
   }

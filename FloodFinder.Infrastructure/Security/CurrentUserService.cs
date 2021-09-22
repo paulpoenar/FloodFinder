@@ -15,7 +15,7 @@ namespace FloodFinder.Infrastructure.Security
       _httpContextAccessor = httpContextAccessor;
     }
 
-    public int GetCurrentUserId()
+    public int GetId()
     {
       var currentUser = _httpContextAccessor.HttpContext.User;
 

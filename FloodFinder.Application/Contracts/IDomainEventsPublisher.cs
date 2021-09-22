@@ -11,7 +11,6 @@ namespace FloodFinder.Application.Contracts
 
   public interface ICurrentUserService
   {
-    int GetCurrentUserId();
-    ClaimsPrincipal GetCurrentUserPrincipal();
+    int GetId();
   }
 }

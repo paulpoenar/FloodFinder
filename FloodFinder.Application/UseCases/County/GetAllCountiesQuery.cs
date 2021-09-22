@@ -13,7 +13,7 @@ namespace FloodFinder.Application.UseCases.County
 {
   public class GetAllCountiesQuery
   {
-    public class Request : IRequest<GenericResponseModel<List<Model>>>
+    public class Request : IRequest<ApplicationResponse<List<Model>>>
     { }
 
     public class Model
@@ -23,7 +23,7 @@ namespace FloodFinder.Application.UseCases.County
 
     }
     
-    public class QueryHandler : IRequestHandler<Request, GenericResponseModel<List<Model>>>
+    public class QueryHandler : IRequestHandler<Request, ApplicationResponse<List<Model>>>
     {
       private readonly IApplicationDbContext _context;
 
@@ -33,7 +33,7 @@ namespace FloodFinder.Application.UseCases.County
       }
 
 
-      public async Task<GenericResponseModel<List<Model>>> Handle(Request message, CancellationToken token)
+      public async Task<ApplicationResponse<List<Model>>> Handle(Request message, CancellationToken token)
       {
         var records = await _context.County.AsNoTracking()
           .Select(x=> new Model()

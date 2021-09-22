@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace FloodFinder.Application.UseCases.Enquiry
 {
   public class LogEnquiryCommand
   {
-    public class Request: IRequest<GenericResponseModel>
+    public class Request : IRequest<ApplicationResponse>
     {
       public int CountyId { get; set; }
       public ICollection<FloodWarningModel> Items { get; set; }
@@ -40,7 +41,7 @@ namespace FloodFinder.Application.UseCases.Enquiry
         public DateTime TimeRaised { get; set; }
         public DateTime TimeSeverityChanged { get; set; }
 
-        public EnquiryFloodWarning ToFloodWarning(FloodArea floodArea)
+        public EnquiryFloodWarning ToDomainModel(FloodArea floodArea)
         {
           return new EnquiryFloodWarning(floodArea, Url, Description, EaAreaName, EaRegionName, IsTidal, Message,
             Severity, SeverityLevel, TimeMessageChanged, TimeRaised, TimeSeverityChanged);
@@ -55,13 +56,13 @@ namespace FloodFinder.Application.UseCases.Enquiry
           public string Polygon { get; set; }
           public string RiverOrSea { get; set; }
 
-          public FloodArea ToFloodArea()
+          public FloodArea ToDomainModel()
           {
             return new FloodArea(Url, County, Notation, Polygon, RiverOrSea);
           }
         }
       }
-      
+
     }
 
     public class Validator : AbstractValidator<Request>
@@ -72,44 +73,50 @@ namespace FloodFinder.Application.UseCases.Enquiry
       }
     }
 
-    public class CommandHandler : IRequestHandler<Request, GenericResponseModel>
+    public class CommandHandler : IRequestHandler<Request, ApplicationResponse>
     {
       private readonly IApplicationDbContext _context;
+      private readonly ICurrentUserService _currentUser;
 
-      public CommandHandler(IApplicationDbContext context)
+      public CommandHandler(IApplicationDbContext context, ICurrentUserService currentUser)
       {
         _context = context;
+        _currentUser = currentUser;
       }
-      
-      public async Task<GenericResponseModel> Handle(Request message, CancellationToken token)
-      {
-        var county = await _context.County.Where(x => x.Id == message.CountyId).SingleOrDefaultAsync(token);
 
-        if (county == null)
+      public async Task<ApplicationResponse> Handle(Request request, CancellationToken token)
+      {
+        var county = await _context.County
+          .Where(x => x.Id == request.CountyId)
+          .FirstOrDefaultAsync(token);
+
+        var userId = _currentUser.GetId();
+
+        //try creating an enquiry
+        var createEnquiryResult = Core.Entities.Enquiry.CreateFrom(county, userId);
+
+        if (!createEnquiryResult.Success)
         {
-          throw new NotFoundException(nameof(County), message.CountyId);
+          return createEnquiryResult.ToApplicationResponseModel();
         }
 
-        var enquiry = new Core.Entities.Enquiry(county);
+        var enquiry = createEnquiryResult.Data;
 
-        if (message.Items!= null)
+        if (request.Items != null)
         {
-          foreach (var item in message.Items)
+          //store each warning
+          foreach (var item in request.Items)
           {
-            var floodArea = await _context.FloodArea.FirstOrDefaultAsync(x => x.Url == item.FloodAreaUrl, cancellationToken: token);
-
-            if (floodArea == null)
-            {
-              floodArea = item.FloodArea.ToFloodArea();
-            }
-
-            var warning = item.ToFloodWarning(floodArea);
+            //get from DB or build from request
+            var floodArea = await _context.FloodArea
+              .FirstOrDefaultAsync(x => x.Url == item.FloodAreaUrl, token) ?? item.FloodArea.ToDomainModel();
+            var warning = item.ToDomainModel(floodArea);
             enquiry.AddFloodWarning(warning);
           }
         }
-        
+
         await _context.Enquiry.AddAsync(enquiry, token);
-        
+
         await _context.SaveChangesAsync(token);
 
         return GenericResponse.Success();

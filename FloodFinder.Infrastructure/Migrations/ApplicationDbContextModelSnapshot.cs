@@ -8,550 +8,553 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FloodFinder.Infrastructure.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+  [DbContext(typeof(ApplicationDbContext))]
+  partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+  {
+    protected override void BuildModel(ModelBuilder modelBuilder)
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
-        {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.3")
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+      modelBuilder
+          .HasAnnotation("Relational:MaxIdentifierLength", 128)
+          .HasAnnotation("ProductVersion", "5.0.3")
+          .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("FloodFinder.Core.Entities.County", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+      modelBuilder.Entity("FloodFinder.Core.Entities.County", b =>
+      {
+        b.Property<int>("Id")
+            .ValueGeneratedOnAdd()
+            .HasColumnType("int")
+            .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+        b.Property<string>("Name")
+            .IsRequired()
+            .HasMaxLength(100)
+            .HasColumnType("nvarchar(100)");
 
-                    b.HasKey("Id");
+        b.HasKey("Id");
 
-                    b.ToTable("County");
-                });
+        b.ToTable("County");
+      });
 
-            modelBuilder.Entity("FloodFinder.Core.Entities.Enquiry", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+      modelBuilder.Entity("FloodFinder.Core.Entities.Enquiry", b =>
+      {
+        b.Property<int>("Id")
+            .ValueGeneratedOnAdd()
+            .HasColumnType("int")
+            .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CountyId")
-                        .HasColumnType("int");
+        b.Property<int>("CountyId")
+            .HasColumnType("int");
 
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
+        b.Property<DateTime>("Created")
+            .HasColumnType("datetime2");
 
-                    b.Property<int>("CreatedBy")
-                        .HasColumnType("int");
+        b.Property<int>("CreatedBy")
+            .HasColumnType("int");
 
-                    b.HasKey("Id");
+        b.Property<int>("UserId")
+            .HasColumnType("int");
 
-                    b.HasIndex("CountyId");
+        b.HasKey("Id");
 
-                    b.ToTable("Enquiry");
-                });
+        b.HasIndex("CountyId");
 
-            modelBuilder.Entity("FloodFinder.Core.Entities.EnquiryFloodWarning", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+        b.ToTable("Enquiry");
+      });
 
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
+      modelBuilder.Entity("FloodFinder.Core.Entities.EnquiryFloodWarning", b =>
+      {
+        b.Property<int>("Id")
+            .ValueGeneratedOnAdd()
+            .HasColumnType("int")
+            .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CreatedBy")
-                        .HasColumnType("int");
+        b.Property<DateTime>("Created")
+            .HasColumnType("datetime2");
 
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+        b.Property<int>("CreatedBy")
+            .HasColumnType("int");
 
-                    b.Property<string>("EaAreaName")
-                        .HasColumnType("nvarchar(max)");
+        b.Property<string>("Description")
+            .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("EaRegionName")
-                        .HasColumnType("nvarchar(max)");
+        b.Property<string>("EaAreaName")
+            .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("EnquiryId")
-                        .HasColumnType("int");
+        b.Property<string>("EaRegionName")
+            .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("FloodAreaId")
-                        .HasColumnType("int");
+        b.Property<int>("EnquiryId")
+            .HasColumnType("int");
 
-                    b.Property<bool>("IsTidal")
-                        .HasColumnType("bit");
+        b.Property<int>("FloodAreaId")
+            .HasColumnType("int");
 
-                    b.Property<string>("Message")
-                        .HasColumnType("nvarchar(max)");
+        b.Property<bool>("IsTidal")
+            .HasColumnType("bit");
 
-                    b.Property<string>("Severity")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
+        b.Property<string>("Message")
+            .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SeverityLevel")
-                        .HasColumnType("int");
+        b.Property<string>("Severity")
+            .IsRequired()
+            .HasMaxLength(150)
+            .HasColumnType("nvarchar(150)");
 
-                    b.Property<DateTime>("TimeMessageChanged")
-                        .HasColumnType("datetime2");
+        b.Property<int>("SeverityLevel")
+            .HasColumnType("int");
 
-                    b.Property<DateTime>("TimeRaised")
-                        .HasColumnType("datetime2");
+        b.Property<DateTime>("TimeMessageChanged")
+            .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("TimeSeverityChanged")
-                        .HasColumnType("datetime2");
+        b.Property<DateTime>("TimeRaised")
+            .HasColumnType("datetime2");
 
-                    b.Property<string>("Url")
-                        .HasColumnType("nvarchar(max)");
+        b.Property<DateTime>("TimeSeverityChanged")
+            .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+        b.Property<string>("Url")
+            .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("EnquiryId");
+        b.HasKey("Id");
 
-                    b.HasIndex("FloodAreaId");
+        b.HasIndex("EnquiryId");
 
-                    b.ToTable("EnquiryFloodWarning");
-                });
+        b.HasIndex("FloodAreaId");
 
-            modelBuilder.Entity("FloodFinder.Core.Entities.FloodArea", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+        b.ToTable("EnquiryFloodWarning");
+      });
 
-                    b.Property<string>("County")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+      modelBuilder.Entity("FloodFinder.Core.Entities.FloodArea", b =>
+      {
+        b.Property<int>("Id")
+            .ValueGeneratedOnAdd()
+            .HasColumnType("int")
+            .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
+        b.Property<string>("County")
+            .IsRequired()
+            .HasMaxLength(100)
+            .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("CreatedBy")
-                        .HasColumnType("int");
+        b.Property<DateTime>("Created")
+            .HasColumnType("datetime2");
 
-                    b.Property<string>("Notation")
-                        .HasColumnType("nvarchar(max)");
+        b.Property<int>("CreatedBy")
+            .HasColumnType("int");
 
-                    b.Property<string>("Polygon")
-                        .HasColumnType("nvarchar(max)");
+        b.Property<string>("Notation")
+            .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("RiverOrSea")
-                        .HasColumnType("nvarchar(max)");
+        b.Property<string>("Polygon")
+            .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Url")
-                        .HasColumnType("nvarchar(max)");
+        b.Property<string>("RiverOrSea")
+            .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+        b.Property<string>("Url")
+            .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("FloodArea");
-                });
+        b.HasKey("Id");
 
-            modelBuilder.Entity("FloodFinder.Infrastructure.Security.Identity.ApplicationUser", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+        b.ToTable("FloodArea");
+      });
 
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
+      modelBuilder.Entity("FloodFinder.Infrastructure.Security.Identity.ApplicationUser", b =>
+      {
+        b.Property<int>("Id")
+            .ValueGeneratedOnAdd()
+            .HasColumnType("int")
+            .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
+        b.Property<int>("AccessFailedCount")
+            .HasColumnType("int");
 
-                    b.Property<string>("Email")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+        b.Property<string>("ConcurrencyStamp")
+            .IsConcurrencyToken()
+            .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
+        b.Property<string>("Email")
+            .HasMaxLength(256)
+            .HasColumnType("nvarchar(256)");
 
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
+        b.Property<bool>("EmailConfirmed")
+            .HasColumnType("bit");
 
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
+        b.Property<bool>("LockoutEnabled")
+            .HasColumnType("bit");
 
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+        b.Property<DateTimeOffset?>("LockoutEnd")
+            .HasColumnType("datetimeoffset");
 
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+        b.Property<string>("NormalizedEmail")
+            .HasMaxLength(256)
+            .HasColumnType("nvarchar(256)");
 
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
+        b.Property<string>("NormalizedUserName")
+            .HasMaxLength(256)
+            .HasColumnType("nvarchar(256)");
 
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
+        b.Property<string>("PasswordHash")
+            .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
+        b.Property<string>("PhoneNumber")
+            .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
+        b.Property<bool>("PhoneNumberConfirmed")
+            .HasColumnType("bit");
 
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
+        b.Property<string>("SecurityStamp")
+            .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+        b.Property<bool>("TwoFactorEnabled")
+            .HasColumnType("bit");
 
-                    b.HasKey("Id");
+        b.Property<string>("UserName")
+            .HasMaxLength(256)
+            .HasColumnType("nvarchar(256)");
 
-                    b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
+        b.HasKey("Id");
 
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasDatabaseName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+        b.HasIndex("NormalizedEmail")
+            .HasDatabaseName("EmailIndex");
 
-                    b.ToTable("AspNetUsers");
-                });
+        b.HasIndex("NormalizedUserName")
+            .IsUnique()
+            .HasDatabaseName("UserNameIndex")
+            .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-            modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.DeviceFlowCodes", b =>
-                {
-                    b.Property<string>("UserCode")
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+        b.ToTable("AspNetUsers");
+      });
 
-                    b.Property<string>("ClientId")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+      modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.DeviceFlowCodes", b =>
+      {
+        b.Property<string>("UserCode")
+            .HasMaxLength(200)
+            .HasColumnType("nvarchar(200)");
 
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
+        b.Property<string>("ClientId")
+            .IsRequired()
+            .HasMaxLength(200)
+            .HasColumnType("nvarchar(200)");
 
-                    b.Property<string>("Data")
-                        .IsRequired()
-                        .HasMaxLength(50000)
-                        .HasColumnType("nvarchar(max)");
+        b.Property<DateTime>("CreationTime")
+            .HasColumnType("datetime2");
 
-                    b.Property<string>("Description")
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+        b.Property<string>("Data")
+            .IsRequired()
+            .HasMaxLength(50000)
+            .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("DeviceCode")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+        b.Property<string>("Description")
+            .HasMaxLength(200)
+            .HasColumnType("nvarchar(200)");
 
-                    b.Property<DateTime?>("Expiration")
-                        .IsRequired()
-                        .HasColumnType("datetime2");
+        b.Property<string>("DeviceCode")
+            .IsRequired()
+            .HasMaxLength(200)
+            .HasColumnType("nvarchar(200)");
 
-                    b.Property<string>("SessionId")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+        b.Property<DateTime?>("Expiration")
+            .IsRequired()
+            .HasColumnType("datetime2");
 
-                    b.Property<string>("SubjectId")
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+        b.Property<string>("SessionId")
+            .HasMaxLength(100)
+            .HasColumnType("nvarchar(100)");
 
-                    b.HasKey("UserCode");
+        b.Property<string>("SubjectId")
+            .HasMaxLength(200)
+            .HasColumnType("nvarchar(200)");
 
-                    b.HasIndex("DeviceCode")
-                        .IsUnique();
+        b.HasKey("UserCode");
 
-                    b.HasIndex("Expiration");
+        b.HasIndex("DeviceCode")
+            .IsUnique();
 
-                    b.ToTable("DeviceCodes");
-                });
+        b.HasIndex("Expiration");
 
-            modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.PersistedGrant", b =>
-                {
-                    b.Property<string>("Key")
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+        b.ToTable("DeviceCodes");
+      });
 
-                    b.Property<string>("ClientId")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+      modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.PersistedGrant", b =>
+      {
+        b.Property<string>("Key")
+            .HasMaxLength(200)
+            .HasColumnType("nvarchar(200)");
 
-                    b.Property<DateTime?>("ConsumedTime")
-                        .HasColumnType("datetime2");
+        b.Property<string>("ClientId")
+            .IsRequired()
+            .HasMaxLength(200)
+            .HasColumnType("nvarchar(200)");
 
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
+        b.Property<DateTime?>("ConsumedTime")
+            .HasColumnType("datetime2");
 
-                    b.Property<string>("Data")
-                        .IsRequired()
-                        .HasMaxLength(50000)
-                        .HasColumnType("nvarchar(max)");
+        b.Property<DateTime>("CreationTime")
+            .HasColumnType("datetime2");
 
-                    b.Property<string>("Description")
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+        b.Property<string>("Data")
+            .IsRequired()
+            .HasMaxLength(50000)
+            .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("Expiration")
-                        .HasColumnType("datetime2");
+        b.Property<string>("Description")
+            .HasMaxLength(200)
+            .HasColumnType("nvarchar(200)");
 
-                    b.Property<string>("SessionId")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+        b.Property<DateTime?>("Expiration")
+            .HasColumnType("datetime2");
 
-                    b.Property<string>("SubjectId")
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+        b.Property<string>("SessionId")
+            .HasMaxLength(100)
+            .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+        b.Property<string>("SubjectId")
+            .HasMaxLength(200)
+            .HasColumnType("nvarchar(200)");
 
-                    b.HasKey("Key");
+        b.Property<string>("Type")
+            .IsRequired()
+            .HasMaxLength(50)
+            .HasColumnType("nvarchar(50)");
 
-                    b.HasIndex("Expiration");
+        b.HasKey("Key");
 
-                    b.HasIndex("SubjectId", "ClientId", "Type");
+        b.HasIndex("Expiration");
 
-                    b.HasIndex("SubjectId", "SessionId", "Type");
+        b.HasIndex("SubjectId", "ClientId", "Type");
 
-                    b.ToTable("PersistedGrants");
-                });
+        b.HasIndex("SubjectId", "SessionId", "Type");
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<int>", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+        b.ToTable("PersistedGrants");
+      });
 
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
+      modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<int>", b =>
+      {
+        b.Property<int>("Id")
+            .ValueGeneratedOnAdd()
+            .HasColumnType("int")
+            .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Name")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+        b.Property<string>("ConcurrencyStamp")
+            .IsConcurrencyToken()
+            .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("NormalizedName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+        b.Property<string>("Name")
+            .HasMaxLength(256)
+            .HasColumnType("nvarchar(256)");
 
-                    b.HasKey("Id");
+        b.Property<string>("NormalizedName")
+            .HasMaxLength(256)
+            .HasColumnType("nvarchar(256)");
 
-                    b.HasIndex("NormalizedName")
-                        .IsUnique()
-                        .HasDatabaseName("RoleNameIndex")
-                        .HasFilter("[NormalizedName] IS NOT NULL");
+        b.HasKey("Id");
 
-                    b.ToTable("AspNetRoles");
-                });
+        b.HasIndex("NormalizedName")
+            .IsUnique()
+            .HasDatabaseName("RoleNameIndex")
+            .HasFilter("[NormalizedName] IS NOT NULL");
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+        b.ToTable("AspNetRoles");
+      });
 
-                    b.Property<string>("ClaimType")
-                        .HasColumnType("nvarchar(max)");
+      modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
+      {
+        b.Property<int>("Id")
+            .ValueGeneratedOnAdd()
+            .HasColumnType("int")
+            .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ClaimValue")
-                        .HasColumnType("nvarchar(max)");
+        b.Property<string>("ClaimType")
+            .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
+        b.Property<string>("ClaimValue")
+            .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+        b.Property<int>("RoleId")
+            .HasColumnType("int");
 
-                    b.HasIndex("RoleId");
+        b.HasKey("Id");
 
-                    b.ToTable("AspNetRoleClaims");
-                });
+        b.HasIndex("RoleId");
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+        b.ToTable("AspNetRoleClaims");
+      });
 
-                    b.Property<string>("ClaimType")
-                        .HasColumnType("nvarchar(max)");
+      modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
+      {
+        b.Property<int>("Id")
+            .ValueGeneratedOnAdd()
+            .HasColumnType("int")
+            .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ClaimValue")
-                        .HasColumnType("nvarchar(max)");
+        b.Property<string>("ClaimType")
+            .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
+        b.Property<string>("ClaimValue")
+            .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+        b.Property<int>("UserId")
+            .HasColumnType("int");
 
-                    b.HasIndex("UserId");
+        b.HasKey("Id");
 
-                    b.ToTable("AspNetUserClaims");
-                });
+        b.HasIndex("UserId");
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
-                {
-                    b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+        b.ToTable("AspNetUserClaims");
+      });
 
-                    b.Property<string>("ProviderKey")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+      modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
+      {
+        b.Property<string>("LoginProvider")
+            .HasMaxLength(128)
+            .HasColumnType("nvarchar(128)");
 
-                    b.Property<string>("ProviderDisplayName")
-                        .HasColumnType("nvarchar(max)");
+        b.Property<string>("ProviderKey")
+            .HasMaxLength(128)
+            .HasColumnType("nvarchar(128)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
+        b.Property<string>("ProviderDisplayName")
+            .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("LoginProvider", "ProviderKey");
+        b.Property<int>("UserId")
+            .HasColumnType("int");
 
-                    b.HasIndex("UserId");
+        b.HasKey("LoginProvider", "ProviderKey");
 
-                    b.ToTable("AspNetUserLogins");
-                });
+        b.HasIndex("UserId");
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
-                {
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
+        b.ToTable("AspNetUserLogins");
+      });
 
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
+      modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
+      {
+        b.Property<int>("UserId")
+            .HasColumnType("int");
 
-                    b.HasKey("UserId", "RoleId");
+        b.Property<int>("RoleId")
+            .HasColumnType("int");
 
-                    b.HasIndex("RoleId");
+        b.HasKey("UserId", "RoleId");
 
-                    b.ToTable("AspNetUserRoles");
-                });
+        b.HasIndex("RoleId");
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
-                {
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
+        b.ToTable("AspNetUserRoles");
+      });
 
-                    b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+      modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
+      {
+        b.Property<int>("UserId")
+            .HasColumnType("int");
 
-                    b.Property<string>("Name")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+        b.Property<string>("LoginProvider")
+            .HasMaxLength(128)
+            .HasColumnType("nvarchar(128)");
 
-                    b.Property<string>("Value")
-                        .HasColumnType("nvarchar(max)");
+        b.Property<string>("Name")
+            .HasMaxLength(128)
+            .HasColumnType("nvarchar(128)");
 
-                    b.HasKey("UserId", "LoginProvider", "Name");
+        b.Property<string>("Value")
+            .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("AspNetUserTokens");
-                });
+        b.HasKey("UserId", "LoginProvider", "Name");
 
-            modelBuilder.Entity("FloodFinder.Core.Entities.Enquiry", b =>
-                {
-                    b.HasOne("FloodFinder.Core.Entities.County", "County")
-                        .WithMany()
-                        .HasForeignKey("CountyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+        b.ToTable("AspNetUserTokens");
+      });
 
-                    b.Navigation("County");
-                });
+      modelBuilder.Entity("FloodFinder.Core.Entities.Enquiry", b =>
+      {
+        b.HasOne("FloodFinder.Core.Entities.County", "County")
+            .WithMany()
+            .HasForeignKey("CountyId")
+            .OnDelete(DeleteBehavior.Cascade)
+            .IsRequired();
 
-            modelBuilder.Entity("FloodFinder.Core.Entities.EnquiryFloodWarning", b =>
-                {
-                    b.HasOne("FloodFinder.Core.Entities.Enquiry", "Enquiry")
-                        .WithMany("FloodWarnings")
-                        .HasForeignKey("EnquiryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+        b.Navigation("County");
+      });
 
-                    b.HasOne("FloodFinder.Core.Entities.FloodArea", "FloodArea")
-                        .WithMany("Responses")
-                        .HasForeignKey("FloodAreaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+      modelBuilder.Entity("FloodFinder.Core.Entities.EnquiryFloodWarning", b =>
+      {
+        b.HasOne("FloodFinder.Core.Entities.Enquiry", "Enquiry")
+            .WithMany("FloodWarnings")
+            .HasForeignKey("EnquiryId")
+            .OnDelete(DeleteBehavior.Cascade)
+            .IsRequired();
 
-                    b.Navigation("Enquiry");
+        b.HasOne("FloodFinder.Core.Entities.FloodArea", "FloodArea")
+            .WithMany("Responses")
+            .HasForeignKey("FloodAreaId")
+            .OnDelete(DeleteBehavior.Cascade)
+            .IsRequired();
 
-                    b.Navigation("FloodArea");
-                });
+        b.Navigation("Enquiry");
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<int>", null)
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
+        b.Navigation("FloodArea");
+      });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
-                {
-                    b.HasOne("FloodFinder.Infrastructure.Security.Identity.ApplicationUser", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
+      modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
+      {
+        b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<int>", null)
+            .WithMany()
+            .HasForeignKey("RoleId")
+            .OnDelete(DeleteBehavior.Cascade)
+            .IsRequired();
+      });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
-                {
-                    b.HasOne("FloodFinder.Infrastructure.Security.Identity.ApplicationUser", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
+      modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
+      {
+        b.HasOne("FloodFinder.Infrastructure.Security.Identity.ApplicationUser", null)
+            .WithMany()
+            .HasForeignKey("UserId")
+            .OnDelete(DeleteBehavior.Cascade)
+            .IsRequired();
+      });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<int>", null)
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+      modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
+      {
+        b.HasOne("FloodFinder.Infrastructure.Security.Identity.ApplicationUser", null)
+            .WithMany()
+            .HasForeignKey("UserId")
+            .OnDelete(DeleteBehavior.Cascade)
+            .IsRequired();
+      });
 
-                    b.HasOne("FloodFinder.Infrastructure.Security.Identity.ApplicationUser", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
+      modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
+      {
+        b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<int>", null)
+            .WithMany()
+            .HasForeignKey("RoleId")
+            .OnDelete(DeleteBehavior.Cascade)
+            .IsRequired();
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
-                {
-                    b.HasOne("FloodFinder.Infrastructure.Security.Identity.ApplicationUser", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
+        b.HasOne("FloodFinder.Infrastructure.Security.Identity.ApplicationUser", null)
+            .WithMany()
+            .HasForeignKey("UserId")
+            .OnDelete(DeleteBehavior.Cascade)
+            .IsRequired();
+      });
 
-            modelBuilder.Entity("FloodFinder.Core.Entities.Enquiry", b =>
-                {
-                    b.Navigation("FloodWarnings");
-                });
+      modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
+      {
+        b.HasOne("FloodFinder.Infrastructure.Security.Identity.ApplicationUser", null)
+            .WithMany()
+            .HasForeignKey("UserId")
+            .OnDelete(DeleteBehavior.Cascade)
+            .IsRequired();
+      });
 
-            modelBuilder.Entity("FloodFinder.Core.Entities.FloodArea", b =>
-                {
-                    b.Navigation("Responses");
-                });
+      modelBuilder.Entity("FloodFinder.Core.Entities.Enquiry", b =>
+      {
+        b.Navigation("FloodWarnings");
+      });
+
+      modelBuilder.Entity("FloodFinder.Core.Entities.FloodArea", b =>
+      {
+        b.Navigation("Responses");
+      });
 #pragma warning restore 612, 618
-        }
     }
+  }
 }

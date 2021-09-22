@@ -67,7 +67,7 @@ namespace FloodFinder.Infrastructure.Persistence.EntityFramework
         {
           case EntityState.Added:
             entry.Entity.Created = DateTime.UtcNow;
-            entry.Entity.CreatedBy = _currentUser.GetCurrentUserId();
+            entry.Entity.CreatedBy = _currentUser.GetId();
             break;
           case EntityState.Detached:
             break;

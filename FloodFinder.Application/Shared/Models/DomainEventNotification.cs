@@ -16,29 +16,29 @@ namespace FloodFinder.Application.Shared.Models
 
   public class GenericResponse
   {
-    public static GenericResponseModel Success()
+    public static ApplicationResponse Success()
     {
-      return new GenericResponseModel() { Success = true };
+      return new ApplicationResponse() { Success = true };
     }
 
-    public static GenericResponseModel Failed(string error)
+    public static ApplicationResponse Failed(string error)
     {
-      return new GenericResponseModel() { Success = false, Errors = new List<string>() { error } };
+      return new ApplicationResponse() { Success = false, Errors = new List<string>() { error } };
     }
 
-    public static GenericResponseModel<T> Success<T>(T data)
+    public static ApplicationResponse<T> Success<T>(T data)
     {
-      return new GenericResponseModel<T>() { Success = true, Data = data };
+      return new ApplicationResponse<T>() { Success = true, Data = data };
     }
 
-    public static GenericResponseModel<T> Failed<T>(string error)
+    public static ApplicationResponse<T> Failed<T>(string error)
     {
-      return new GenericResponseModel<T>() { Success = false, Errors = new List<string>() { error } };
+      return new ApplicationResponse<T>() { Success = false, Errors = new List<string>() { error } };
     }
 
-    public static GenericResponseModel<T> Failed<T>(List<string> errors)
+    public static ApplicationResponse<T> Failed<T>(List<string> errors)
     {
-      return new GenericResponseModel<T>() { Success = false, Errors = errors };
+      return new ApplicationResponse<T>() { Success = false, Errors = errors };
     }
   }
 }

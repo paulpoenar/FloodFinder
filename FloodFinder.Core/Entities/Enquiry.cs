@@ -7,9 +7,10 @@ namespace FloodFinder.Core.Entities
   public partial class Enquiry: DomainEntity
   {
     public int CountyId { get; private set; }
+    public int UserId { get; private set; }
     public County County { get; private set; }
 
-    private readonly List<EnquiryFloodWarning> _floodWarnings;
+    private List<EnquiryFloodWarning> _floodWarnings;
     public IReadOnlyCollection<EnquiryFloodWarning> FloodWarnings => _floodWarnings;
 
     private Enquiry()
@@ -17,10 +18,22 @@ namespace FloodFinder.Core.Entities
       
     }
 
-    public Enquiry(County county)
+    public static DomainResponse<Enquiry> CreateFrom(County county, int userId)
     {
-      County = county;
-      _floodWarnings = new List<EnquiryFloodWarning>();
+      if (county==null)
+      {
+        return DomainResponse.Failed("Unable to create. County is null", (Enquiry)null);
+      }
+
+      var enquiry = new Enquiry()
+      {
+        County = county,
+        _floodWarnings = new List<EnquiryFloodWarning>(),
+        UserId = userId
+      };
+
+      return DomainResponse.Succeeded(enquiry);
+
     }
 
     public void AddFloodWarning(EnquiryFloodWarning warning)

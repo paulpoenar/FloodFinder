@@ -5,7 +5,7 @@ namespace FloodFinder.Helpers
 {
   public static class GenericResponseExtensions
   {
-    public static IActionResult ToActionResult(this GenericResponseModel response)
+    public static IActionResult ToActionResult(this ApplicationResponse response)
     {
       if (response.Success)
       {

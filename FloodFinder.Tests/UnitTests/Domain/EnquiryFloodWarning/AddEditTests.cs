@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FloodFinder.Tests.DataBuilders;
+using FloodFinder.Tests.Helpers.DataBuilders;
 using FluentAssertions;
 using Xunit;
 
-namespace FloodFinder.Tests.UnitTests.EnquiryFloodWarning
+namespace FloodFinder.Tests.UnitTests.Domain.EnquiryFloodWarning
 {
   public class AddEditTests
   {
@@ -18,7 +14,6 @@ namespace FloodFinder.Tests.UnitTests.EnquiryFloodWarning
       var description = "agmehjxw2";
       var eaAreaName = "agmehjxw3";
       var eaRegionName = "agmehjxw4";
-      var floodAreaId = 879;
       var isTidal = true;
       var message = "agmehjxw5";
       var severity = "agmehjxw6";
@@ -28,7 +23,10 @@ namespace FloodFinder.Tests.UnitTests.EnquiryFloodWarning
       var timeSeverityChanged = new DateTime(2020, 1, 3);
 
       var floodArea = FloodAreaBuilder.Create();
-      var entity = new Core.Entities.EnquiryFloodWarning(floodArea,url, description, eaAreaName, eaRegionName, isTidal, message, severity, severityLevel, timeMessageChanged, timeRaised, timeSeverityChanged);
+      var entity = new Core.Entities.EnquiryFloodWarning(floodArea,url, description, 
+        eaAreaName, eaRegionName, 
+        isTidal, message, severity, severityLevel, 
+        timeMessageChanged, timeRaised, timeSeverityChanged);
       entity.Should().NotBe(null);
       entity.Url.Should().Be(url);
       entity.Description.Should().Be(description);

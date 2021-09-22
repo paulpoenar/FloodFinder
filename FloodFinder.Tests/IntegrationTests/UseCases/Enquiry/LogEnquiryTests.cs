@@ -3,12 +3,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using FloodFinder.Application.UseCases.Enquiry;
 using FloodFinder.Infrastructure.Persistence.EntityFramework;
-using FloodFinder.Tests.DataBuilders;
+using FloodFinder.Tests.Helpers.DataBuilders;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 
-namespace FloodFinder.Tests.IntegrationTests.Enquiry
+namespace FloodFinder.Tests.IntegrationTests.UseCases.Enquiry
 {
   using static SliceFixture<ApplicationDbContext>;
 
@@ -17,8 +17,9 @@ namespace FloodFinder.Tests.IntegrationTests.Enquiry
   public class LogEnquiryTests : IntegrationTestBase<ApplicationDbContext>
   {
     [Fact]
-    public async Task NoWarnings()
+    public async Task RequestWithNoWarnings_ShouldSucceed()
     {
+      await ResetCheckpoint();
       var county = CountyBuilder.Create();
 
       await InsertAsync(county);
@@ -27,16 +28,16 @@ namespace FloodFinder.Tests.IntegrationTests.Enquiry
       
       var response = await SendAsync(command);
 
-      var newStockItemOperation = await ExecuteDbContextAsync(db => db.Enquiry
+      var newRecord = await ExecuteDbContextAsync(db => db.Enquiry
         .Include(x=>x.FloodWarnings)
         .Where(d => d.CountyId == county.Id).SingleOrDefaultAsync());
 
-      newStockItemOperation.Should().NotBeNull();
-      newStockItemOperation.FloodWarnings.Count.Should().Be(0);
+      newRecord.Should().NotBeNull();
+      newRecord.FloodWarnings.Count.Should().Be(0);
     }
 
     [Fact]
-    public async Task CreatesWarning()
+    public async Task ShouldCreateFloodWarningsAndFloodArea()
     {
       var county = CountyBuilder.Create();
 
@@ -73,7 +74,7 @@ namespace FloodFinder.Tests.IntegrationTests.Enquiry
     }
 
     [Fact]
-    public async Task FloodAreaAlreadyExists()
+    public async Task ShouldCreateFloodWarningsAndUseExistingFloodArea()
     {
       var county = CountyBuilder.Create();
       await InsertAsync(county);
